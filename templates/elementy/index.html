@@ -1,0 +1,113 @@
+{% extends "elementy/base.html" %}
+
+{% block title %}
+	Best site in the World
+{% endblock title %}
+
+{% block body %}
+{# <div class="container"> #}
+	<table class="table table-bordered table-hover" id="myTable">
+		<thead>
+			<tr class="_blank">
+				<th colspan="5" class="_blank">
+					<div class="col-lg-4">
+						<input type="button" value="Odswież wpisy" id="refresh"></div>
+					<div class="col-lg-8">
+						<a href='app\log.php'>
+							<input type="button" value="Sprawdz LOG" id="logButton"></a>
+						<a href='history.php'>
+							<input type="button" value="Historia" id="historyButton"></a>
+						<a href='index.php'>
+							<input type="button" value="Aktualne wpisy" id="firstSiteButton"></a>
+					</div>
+				</th>
+				<th colspan="2" class="_header dbworks">DBWorks</th>
+				<th colspan="1" class="_header digit">Digitalizacja</th>
+				<th colspan="3" class="_header sap">SAP</th>
+				<th colspan="1" class="_header dominik">Modelarnia</th>
+			</tr>
+			<tr>
+				<th class="ta_col">TA</th>
+				<th class="material_col">Material</th>
+				<th class="text_col">Krótki tekst materiału</th>
+				<th class="deliveryDate_col">Data dostawy</th>
+				<th class="create_col">Data przygotowania</th>
+				<th class="korpus_col dbworks">KORPUS</th>
+				<th class="pianka_col dbworks">PIANKA</th>
+				<th class="tkanina_col digit">TKANINA</th>
+				<th class="struktura_col sap">STRUKTURA</th>
+				<th class="tkaninasap_col sap">TKANINA</th>
+				<th class="czas_col sap">CZAS</th>
+				<th class="dominik_col dominik">DOMINIK</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for row in dane %}
+			<tr>
+				<td>{{ row.ta }}</td>
+				<td>{{ row.material.nr }}</td>
+				<td>{{ row.name }}</td>
+				<td>{{ row.scheduledDate }}</td>
+				<td>{{ row.createDate }}</td>
+				<td class="korpus_col">
+				  <select name="KORPUS" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.korpus == 0 %} style="background-color: #FFFF99;" {% elif row.material.korpus == 1 %} style="background-color: #FFD06B;" {% elif row.material.korpus == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.korpus == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.korpus == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.korpus == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="pianka_col">
+				  <select name="PIANKA" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.pianka == 0 %} style="background-color: #FFFF99;" {% elif row.material.pianka == 1 %} style="background-color: #FFD06B;" {% elif row.material.pianka == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.pianka == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.pianka == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.pianka == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="tkanina_col">
+				  <select name="TKANINA" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.tkanina == 0 %} style="background-color: #FFFF99;" {% elif row.material.tkanina == 1 %} style="background-color: #FFD06B;" {% elif row.material.tkanina == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.tkanina == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.tkanina == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.tkanina == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="struktura_col">
+				  <select name="STRUKTURA" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.struktura == 0 %} style="background-color: #FFFF99;" {% elif row.material.struktura == 1 %} style="background-color: #FFD06B;" {% elif row.material.struktura == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.struktura == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.struktura == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.struktura == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="tkaninasap_col">
+				  <select name="TKANINASAP" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.tkaninySAP == 0 %} style="background-color: #FFFF99;" {% elif row.material.tkaninySAP == 1 %} style="background-color: #FFD06B;" {% elif row.material.tkaninySAP == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.tkaninySAP == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.tkaninySAP == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.tkaninySAP == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="czas">
+				  <select name="CZAS" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.czas == 0 %} style="background-color: #FFFF99;" {% elif row.material.czas == 1 %} style="background-color: #FFD06B;" {% elif row.material.czas == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.czas == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.czas == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.czas == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+				<td class="dominik_col">
+				  <select name="DOMINIK" id="" data-index='{{ row.material.nr}}'
+				  {% if row.material.dominik == 0 %} style="background-color: #FFFF99;" {% elif row.material.dominik == 1 %} style="background-color: #FFD06B;" {% elif row.material.dominik == 2 %} style="background-color: #00FF00;" {% endif %}>
+				    <option value="0" {% if row.material.dominik == 0 %}selected="True"{% endif %}>-</option>
+				    <option value="1" {% if row.material.dominik == 1 %}selected="True"{% endif %}>W przyg.</option>
+				    <option value="2" {% if row.material.dominik == 2 %}selected="True"{% endif %}>Gotowe</option>
+				  </select>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{# </div> #}
+{% endblock body %}

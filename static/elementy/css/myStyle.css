@@ -1,0 +1,146 @@
+th {
+	font-size: 12px;
+	text-align: center;
+	height: 20px;
+	width: auto;
+	background-color: #E68B8B;
+	font-family: 'Playfair Display', serif;
+}
+
+td {
+	font-size: 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+tr {
+	min-height: 55px;
+
+}
+
+tr:nth-child(even) {
+	background-color: #FFF;
+}
+
+tr:nth-child(odd) {
+	background-color: #E6E6E6;
+}
+
+select {
+	text-align: center;
+}
+
+.ta_col {
+	width: 10%;
+}
+
+.material_col {
+	width: 10%;
+	text-align: center;
+}
+
+.text_col {
+	width: 40%;
+	text-align: left;
+	font-size: 12px;
+}
+
+.deliveryDate_col {
+	width: 15%;
+}
+
+.createDate_col {
+	width: 10%;
+}
+
+.hour_col {
+	width: 5%;
+}
+
+.ackDate_col {
+	width: 2%;
+}
+._header {
+	text-align: center;
+}
+
+.dbworks {
+	background-color: #65BDFF;
+}
+
+.digit {
+	background-color: #FFE181;
+}
+
+._header {
+	font-family: 'Oswald';
+	font-size: 16px;
+	font-weight: bold;
+}
+.sap {
+	background-color: #5DFFA6;
+
+}
+
+.dominik {
+	background-color: pink;
+}
+
+._blank {
+	background-color: white;
+	border: none;
+}
+
+
+#tableBorder {
+	height: 500px;
+}
+
+td.korpus_col {
+background-color: #65BDFF;
+　
+}
+
+td.pianka_col {
+background-color: #65BDFF;
+　
+}
+
+td.tkanina_col {
+background-color: #FFE181;
+　
+}
+
+td.struktura_col {
+background-color: #5DFFA6;
+　
+}
+
+td.tkaninasap_col {
+background-color: #5DFFA6;
+　
+}
+
+td.czas {
+background-color: #5DFFA6;
+　
+}
+
+td.dominik_col {
+background-color: pink;
+
+}
+
+.table-hover > tbody > tr:hover {
+	background-color: #7a8bab;
+	color: #000000;
+
+}
+
+.przedterminem {
+	background-color: #ffe181;
+}
+
+.po_terminie {
+	background-color: #e68b8b;
+}
