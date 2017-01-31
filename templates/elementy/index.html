@@ -5,20 +5,25 @@
 {% endblock title %}
 
 {% block body %}
-{# <div class="container"> #}
+<div class="container">
 	<table class="table table-bordered table-hover" id="myTable">
 		<thead>
 			<tr class="_blank">
 				<th colspan="5" class="_blank">
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<input type="button" value="Odswież wpisy" id="refresh"></div>
-					<div class="col-lg-8">
+					<div class="col-lg-9">
 						<a href='app\log.php'>
 							<input type="button" value="Sprawdz LOG" id="logButton"></a>
 						<a href='history.php'>
 							<input type="button" value="Historia" id="historyButton"></a>
 						<a href='index.php'>
 							<input type="button" value="Aktualne wpisy" id="firstSiteButton"></a>
+						{% if auth %}
+							<a href='{% url "wyloguj" %}'><input type="button" value="Wyloguj" id="Logout"></a>
+						{% else %}
+							<a href='index.php'><input type="button" value="Zaloguj" id="Login"></a>
+						{% endif %}
 					</div>
 				</th>
 				<th colspan="2" class="_header dbworks">DBWorks</th>
@@ -109,5 +114,35 @@
 		{% endfor %}
 		</tbody>
 	</table>
-{# </div> #}
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$('select').on('change', function(event) {
+			event.preventDefault();
+			if (confirm("Czy zmienic wpis dla "+$(this).attr('name')+" - Material " + $(this).attr('data-index'))) {
+				$.ajax({
+					url: 'update/',
+					dataType: 'json',
+					type: 'GET',
+					data: {
+						'name' : $(this).attr('name'),
+						'mat_id' : $(this).attr('data-index'),
+						'value' : $(this).val()
+					},
+				});
+
+				if ($(this).val() == '0') {
+					$(this).css('background-color', '#FFFF99');
+				}
+				else if ($(this).val() == '1') {
+					$(this).css('background-color', '#FFD06B');
+				}
+				else if ($(this).val() == '2') {
+					$(this).css('background-color', '#00FF00');
+				}
+			}
+		});
+	});
+</script>
 {% endblock body %}

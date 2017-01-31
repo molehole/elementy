@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import SAPImport, Elementy
+from django.http import HttpResponse
 from datetime import datetime
-import MySQLdb
+
 #requierments
+import MySQLdb
 import unicodecsv as csv
 import re
 
@@ -35,6 +37,16 @@ def import_danych(request):
                 ackTime = datetime.strptime(each[7], '%H:%M:%S'),
                 )
     return redirect('/elementy')
+
+def update(request, *args, **kwargs):
+    _id = request.GET['mat_id']
+    _name = request.GET['name']
+    _value = request.GET['value']
+    element = Elementy.objects.get(nr=_mat_id)
+    element.objects.get()
+    return HttpResponse(_name)
+
+
 
 def import_startych(request):
     conn = MySQLdb.connect('jan-svr-intra', 'itadmin', 'J@nipo1')
