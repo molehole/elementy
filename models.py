@@ -16,6 +16,7 @@ class Elementy(models.Model):
     def __str__(self):
         return str(self.nr)
 
+
 class Access(models.Model):
     element = models.ForeignKey(Elementy)
     user = models.CharField(max_length=50)
@@ -25,6 +26,17 @@ class Access(models.Model):
     def __str__(self):
         return str(self.element)
 
+
+class History(models.Model):
+    element = models.ForeignKey(Elementy)
+    opis = models.CharField(max_length=10)
+    user = models.CharField(max_length=20)
+    datetime = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.element
+
+
 class SAPImport(models.Model):
     ta = models.IntegerField()
     material = models.ForeignKey(Elementy)
@@ -33,9 +45,9 @@ class SAPImport(models.Model):
     createDate = models.DateField()
     createTime = models.TimeField()
     ackDate = models.DateField(null=True)
-    ackTime = models.TimeField()    
+    ackTime = models.TimeField()
 
-    def print_status():
+    def print_status(self):
         print("""
             Status TA {0}:
             Material = {1}
@@ -45,7 +57,15 @@ class SAPImport(models.Model):
             CreateTime = {5}
             AckDate = {6}
             AckTime = {7}
-            """).format(self.ta, self.material, self.name, self.scheduledDate, self.createDate, self.createTime, self.ackDate, self.ackTime)
+            """).format(
+            self.ta,
+            self.material,
+            self.name,
+            self.scheduledDate,
+            self.createDate,
+            self.createTime,
+            self.ackDate,
+            self.ackTime)
 
     def __str__(self):
         return "-".join((str(self.ta), str(self.scheduledDate)))

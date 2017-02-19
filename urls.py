@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views as elementy
 
+app_name='elementy'
+
 urlpatterns = [
     url(r'^$', elementy.index, name='index'),
     url(r'^update/$', elementy.update, name='update'),
